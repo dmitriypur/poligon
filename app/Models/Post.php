@@ -6,6 +6,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -29,5 +31,20 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public static function uploadImage(Request $request, $image = null){
+        if($request->hasFile('image')){
+            if($image){
+                Storage::disk('public')->delete($image);
+            }
+            $folder = date('Y-m-d');
+            return Storage::disk('public')->put("/images/{$folder}", $request['image']);
+        }
+        return $image;
+    }
+
+    public function getImage(){
+        return $this->image ? asset("uploads/{$this->image}") : asset('no-image.jpg');
     }
 }

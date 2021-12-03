@@ -22,7 +22,7 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->title ?? '' }}</td>
                             <td>
-                                <img src="{{ asset('storage/'. $category->image) }}" style="width: 80px;" alt="{{ $category->title ?? '' }}">
+                                <img src="{{ $category->getImage() }}" style="width: 80px;" alt="{{ $category->title ?? '' }}">
                             </td>
                             <td>
                                 <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-sm">

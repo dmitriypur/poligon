@@ -27,11 +27,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('post.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Записи
-                            <span class="badge badge-info right">2</span>
+                            <span class="badge badge-info right">{{ $postsCount }}</span>
                         </p>
                     </a>
                 </li>
@@ -40,7 +40,7 @@
                         <i class="nav-icon fas fa-th-list"></i>
                         <p>
                             Категории
-                            <span class="badge badge-info right">{{ $categories->count() }}</span>
+                            <span class="badge badge-info right">{{ $categoriesCount }}</span>
                         </p>
                     </a>
                 </li>
@@ -49,7 +49,7 @@
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Тэги
-                            <span class="badge badge-info right">12</span>
+                            <span class="badge badge-info right">{{ $tagsCount }}</span>
                         </p>
                     </a>
                 </li>

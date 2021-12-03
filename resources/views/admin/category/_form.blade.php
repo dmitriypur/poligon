@@ -15,7 +15,7 @@
 </div>
 @if($category)
 <div class="w-25">
-    <img src="{{ asset('storage/'. $category->image) }}" style="width: 100%;" alt="{{ $category->title ?? '' }}">
+    <img src="{{ $category->getImage() }}" style="width: 100%;" alt="{{ $category->title ?? '' }}">
 </div>
 @endif
 <div class="form-group">

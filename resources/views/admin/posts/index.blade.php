@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-5">Тэги</h1>
-        <a href="{{ route('tag.create') }}" class="btn btn-primary mb-3">Создать тэг</a>
+        <h1 class="my-5">Записи</h1>
+        <a href="{{ route('post.create') }}" class="btn btn-primary mb-3">Создать запись</a>
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered">
@@ -11,19 +11,27 @@
                     <tr>
                         <th style="width: 10px">ID</th>
                         <th>Название</th>
+                        <th>Опубликовано</th>
+                        <th>Вывод на главной</th>
+                        <th>Изображение</th>
                         <th style="width: 100px">Действие</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($tags as $tag)
+                    @forelse($posts as $post)
                         <tr>
-                            <td>{{ $tag->id }}</td>
-                            <td>{{ $tag->title ?? '' }}</td>
+                            <td>{{ $post->id }}</td>
+                            <td>{{ $post->title ?? '' }}</td>
+                            <td class="{{ $post->publish ? 'text-success' : 'text-danger' }}">{{ $post->publish ? 'Да' : 'Нет' }}</td>
+                            <td class="{{ $post->favorite ? 'text-success' : 'text-danger' }}">{{ $post->favorite ? 'Да' : 'Нет' }}</td>
                             <td>
-                                <a href="{{ route('tag.edit', $tag->id) }}" class="btn btn-primary btn-sm">
+                                <img src="{{ $post->getImage() }}" style="width: 80px;" alt="{{ $post->title ?? '' }}">
+                            </td>
+                            <td>
+                                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <form action="{{ route('tag.destroy', $tag->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('post.destroy', $post->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
@@ -33,7 +41,7 @@
                     @empty
                         <tr>
                             <th colspan="2">
-                                <h1>Тэги отсутствуют</h1>
+                                <h1>Записи отсутствуют</h1>
                             </th>
                         </tr>
                     @endforelse
@@ -42,7 +50,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-                {{ $tags->links('vendor.pagination.bootstrap-4') }}
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

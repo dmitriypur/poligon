@@ -56,9 +56,7 @@ class CategoryController extends Controller
 
         $data = Validator::make($request->all(), $rules, $messages)->validate();
 
-        if(isset($data['image'])){
-            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-        }
+        $data['image'] = Category::uploadImage($request);
         Category::create($data);
 
         return redirect()->route('category.index')->with('success', 'Категория добавлена');
@@ -102,11 +100,8 @@ class CategoryController extends Controller
 
         $data = Validator::make($request->all(), $rules, $messages)->validate();
 
-        if(!isset($data['image'])){
-            $data['image'] = $category->image;
-        }else{
-            $data['image'] = Storage::disk('public')->put('/images', $data['image']);
-        }
+        $data['image'] = Category::uploadImage($request, $category->image);
+
         $category->update($data);
 
         return redirect()->back()->with('success', 'Категория обновлена');

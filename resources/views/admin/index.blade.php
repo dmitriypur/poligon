@@ -6,7 +6,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>{{ $categories->count() }}</h3>
+                    <h3>{{ $categoriesCount }}</h3>
 
                     <p>Категории</p>
                 </div>
@@ -21,7 +21,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>3</h3>
+                    <h3>{{ $tagsCount }}</h3>
 
                     <p>Тэги</p>
                 </div>
@@ -36,7 +36,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>5</h3>
+                    <h3>{{ $postsCount }}</h3>
                     <p>Записи</p>
                 </div>
                 <div class="icon">

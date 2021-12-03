@@ -10,8 +10,8 @@
                              src="https://tyumen.snmash.ru/images/products/opory-truboprovodov/seria-5.905-25.05-vipusk-1/no-foto.jpg"
                              class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $favorite->title }}</h5>
-                            <p class="card-text">{{ $favorite->preview }}.</p>
+                            <h5 class="card-title">{{ $favorite->title ?? '' }}</h5>
+                            <p class="card-text">{{ $favorite->preview ?? '' }}.</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>

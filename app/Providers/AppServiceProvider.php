@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,8 +31,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer([
             'admin.parts.sidebar',
             'admin.index'
-        ], function($view){
-            $view->with('categories', Category::all());
+        ], function ($view) {
+            $view->with('categoriesCount', Category::all()->count());
+            $view->with('tagsCount', Tag::all()->count());
+            $view->with('postsCount', Post::all()->count());
         });
     }
 }
