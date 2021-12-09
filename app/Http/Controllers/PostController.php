@@ -8,7 +8,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(4);
+        $posts = Post::orderBy('id', 'DESC')->with('likes')->paginate(4);
         $title = 'Новости';
         return view('frontend.post.index', compact('posts', 'title'));
     }

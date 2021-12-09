@@ -10,7 +10,7 @@ class TagController extends Controller
     public function show($slug)
     {
         $tag = Tag::where('slug', $slug)->firstOrFail();
-        $posts =$tag->posts()->paginate(10);
+        $posts =$tag->posts()->orderBy('id', 'DESC')->with('likes')->paginate(10);
         $title = "Новости по тэгу '{$tag->title}'";
         return view('frontend.tag.posts', compact('posts',  'title'));
     }

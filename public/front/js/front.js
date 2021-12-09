@@ -21,7 +21,7 @@
     likeIco.forEach(function (el) {
 
         let parent = el.parentNode
-        if (el.classList.contains('fa-bookmark') || el.classList === 'fas fa-heart') {
+        if (el.classList.contains('fa-bookmark') || el.classList == 'fas fa-heart') {
             parent.setAttribute('data-like', 1)
         }
     })

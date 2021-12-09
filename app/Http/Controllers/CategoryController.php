@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-        $posts = $category->posts()->paginate(10);
+        $posts = $category->posts()->orderBy('id', 'DESC')->with('likes')->paginate(10);
         $title = "Новости категории '{$category->title}'";
         return view('frontend.category.posts', compact('posts', 'title'));
     }

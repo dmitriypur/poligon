@@ -32,18 +32,7 @@
                             <div class="card-body">
                                 <span class="post-date">{{ $post->dateAsCarbon }}</span>
                                 <h5 class="card-title">{{ $post->title }}</h5>
-                                <form class="add-like" action="{{ route('post.like.store', $post->id) }}"
-                                      method="post">
-                                    @csrf
-                                    <span class="text-primary like-count">{{ $post->likes_count }}</span>
-                                    <button type="submit" class="like-btn text-primary" data-ico="heart" data-like="0">
-                                        @if($post->likes->contains('user_ip', $post->ipUser()))
-                                            <i class="fas fa-heart"></i>
-                                        @else
-                                            <i class="far fa-heart"></i>
-                                        @endif
-                                    </button>
-                                </form>
+                                @include('parts.likes')
                                 <a href="{{ route('show.post', $post->slug) }}" class="btn btn-primary">Далее</a>
                             </div>
                         </div>

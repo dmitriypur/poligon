@@ -14,7 +14,8 @@
             {{--                                <a href="#"><span class="badge bg-primary">{{ $post->category->title ?? '' }}</span></a>--}}
             <span class="post-date">{{ $post->dateAsCarbon }}</span>
             <h5 class="card-title">{{ $post->title }}</h5>
-            <a href="{{ route('show.post', $post->slug) }}" class="btn btn-primary">Go somewhere</a>
+            @include('parts.likes')
+            <a href="{{ route('show.post', $post->slug) }}" class="btn btn-primary">Далее</a>
             <p><i class="far fa-eye"></i> <span class="badge bg-primary">{{ $post->view_count }}</span></p>
         </div>
     </div>
