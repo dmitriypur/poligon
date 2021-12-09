@@ -16,6 +16,7 @@ class Post extends Model
     use SoftDeletes;
     use Sluggable;
     protected $guarded = [];
+    protected $withCount = ['likes'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -51,5 +52,21 @@ class Post extends Model
 
     public function getDateAsCarbonAttribute(){
         return Carbon::parse($this->created_at)->translatedFormat('F d, Y');
+    }
+
+    public function ipUser(){
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = @$_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP)) $ip = $client;
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)) $ip = $forward;
+        else $ip = $remote;
+
+        return $ip;
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class, 'post_id', 'id');
     }
 }

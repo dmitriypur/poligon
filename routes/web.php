@@ -20,6 +20,9 @@ Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{slug}', 'CategoryController@show')->name('category.single');
 Route::get('/tag/{slug}', 'TagController@show')->name('tag.single');
 
+Route::post('/{id}/likes', 'LikeController@index')->name('post.like.store');
+
+
 
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function(){
