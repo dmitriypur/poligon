@@ -30,11 +30,19 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer([
             'admin.parts.sidebar',
-            'admin.index'
+            'admin.index',
         ], function ($view) {
             $view->with('categoriesCount', Category::all()->count());
             $view->with('tagsCount', Tag::all()->count());
             $view->with('postsCount', Post::all()->count());
+        });
+
+        view()->composer([
+            'parts.sidebar',
+        ], function ($view) {
+//            $view->with('categories', Category::with('posts')->limit(5)->get());
+            $view->with('categories', Category::withCount('posts')->limit(5)->get());
+            $view->with('tags', Tag::all());
         });
     }
 }

@@ -9,10 +9,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src=".." class="img-circle elevation-2" alt="User Image">
+                <img src="{{ auth()->user()->getImage() }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -54,11 +54,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('user.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Пользователи
-                            <span class="badge badge-info right">5</span>
+                            <span class="badge badge-info right">3</span>
                         </p>
                     </a>
                 </li>

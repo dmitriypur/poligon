@@ -1,5 +1,4 @@
 @extends('admin.layouts.main')
-
 @section('content')
     <div class="container">
         <h1 class="my-5 text-center">Редактировать категорию</h1>

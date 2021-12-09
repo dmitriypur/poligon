@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -149,7 +150,7 @@ class PostController extends Controller
         unset($data['tag_ids']);
 
         $data['image'] = Post::uploadImage($request, $post->image);
-
+        dd($data);
         $post->update($data);
 
         $post->tags()->sync($tagIds);

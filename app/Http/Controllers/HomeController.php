@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -11,6 +12,7 @@ class HomeController extends Controller
 
         $favorite = Post::where('favorite', 1)->first();
         $posts = Post::orderBy('id', 'DESC')->limit(6)->get();
-        return view('home', compact('posts', 'favorite'));
+        $title = 'Главная страница';
+        return view('home', compact('posts', 'favorite', 'title'));
     }
 }

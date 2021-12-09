@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,5 +47,9 @@ class Post extends Model
 
     public function getImage(){
         return $this->image ? asset("uploads/{$this->image}") : asset('no-image.jpg');
+    }
+
+    public function getDateAsCarbonAttribute(){
+        return Carbon::parse($this->created_at)->translatedFormat('F d, Y');
     }
 }

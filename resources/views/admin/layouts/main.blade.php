@@ -29,10 +29,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <form action="#" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-primary">Выйти</button>
-                </form>
+                    <a href="{{ route('logout') }}" class="btn btn-outline-primary">Выйти</a>
             </li>
         </ul>
 
@@ -86,11 +83,20 @@
         @if(session()->has('success'))
         <section class="content">
             <div class="container">
-                <div class="alert alert-success alert-dismissible">
+                <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             </div>
         </section>
+        @endif
+        @if(session()->has('error'))
+            <section class="content">
+                <div class="container">
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                </div>
+            </section>
         @endif
         <section class="content">
             <div class="container">
@@ -136,6 +142,8 @@
     $(function () {
         bsCustomFileInput.init();
     });
+
+
 </script>
 <script>
     $(function () {

@@ -1,5 +1,4 @@
 @extends('admin.layouts.main')
-
 @section('content')
     <div class="container">
         <h1 class="my-5 text-center">Добавить запись</h1>
@@ -63,7 +62,7 @@
                             <input id="favorite" class="form-check-input" type="checkbox" name="favorite">
                             <label for="favorite" class="form-check-label">Вывести на главной</label>
                         </div>
-                        <input type="hidden" name="user_id" value="1">
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
                     </div>
 
                     <div class="card-footer">
