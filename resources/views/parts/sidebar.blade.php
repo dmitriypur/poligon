@@ -5,7 +5,7 @@
     <a href="{{ route('cabinet') }}" class=" t_green">
         Личный кабинет
     </a>
-    <a href="#" class="modal__show" data-modal="#sign-in2">
+    <a href="{{ route('subscriptions') }}">
         Подписки
     </a>
     <a href="#" class="modal__show" data-modal="#sign-in2">

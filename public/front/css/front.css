@@ -239,3 +239,19 @@
 .commentlist .children{
     margin-left: 2rem;
 }
+.dropdown-link{
+    position: relative;
+}
+.alert-count{
+    display: none;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: red;
+}
+.has-notifications .alert-count{
+    display: block;
+}

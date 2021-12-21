@@ -21,12 +21,28 @@
                 <img src="{{ $post->getImage() }}" alt="{{ $post->title }}">
                 <h1>{{ $post->title }}</h1>
                 <p><i class="far fa-eye"></i> <span class="badge bg-primary">{{ $post->view_count }}</span></p>
+                <div class="w-25 d-flex justify-content-between align-items-center">
+                    <p class="m-0">Автор: {{ $post->user->name }}</p>
+                    @if(auth()->user() && auth()->user()->id !== $post->user->id)
+                        @if(!auth()->user()->isFollowing($post->user->id))
+                            <form action="{{route('user.follow', $post->user->id)}}" method="POST">
+                                @csrf
+                                <button type="submit" id="follow-user-{{ $post->user->id }}" class="btn btn-link">
+                                    Подписаться
+                                </button>
+                            </form>
+                        @else
+                            <p class="m-0 text-secondary">Вы подписаны</p>
+                        @endif
+                    @endif
+                </div>
+
                 <p>{!! $post->content !!}</p>
             </div>
             @if($com->count())
-            <div class="section-row">
-                @include('frontend.comments.comments_block')
-            </div>
+                <div class="section-row">
+                    @include('frontend.comments.comments_block')
+                </div>
             @else
                 <h3 class="text-primary">Комментариев пока нет. Будьте первым)</h3>
             @endif

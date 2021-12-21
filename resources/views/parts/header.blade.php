@@ -30,6 +30,17 @@
                     </li>
                 @endauth
             </ul>
+            @auth()
+                <div class="dropdown">
+                    <a class="dropdown-link" id="notifications" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="far fa-bell"></i>
+                        <span class="alert-count"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notificationsMenu" id="notificationsMenu">
+                        <li class="dropdown-header">Нет уведомлений</li>
+                    </ul>
+                </div>
+            @endauth
         </div>
     </div>
 </nav>

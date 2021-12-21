@@ -17,7 +17,8 @@ class User extends Authenticatable
     const ROLE_ADMIN = 1;
     const ROLE_READER = 0;
 
-    public static function getRoles(){
+    public static function getRoles()
+    {
         return [
             self::ROLE_ADMIN => 'Админ',
             self::ROLE_READER => 'Читатель',
@@ -63,9 +64,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function uploadAvatar(Request $request, $photo = null){
-        if($request->hasFile('photo')){
-            if($photo){
+    public static function uploadAvatar(Request $request, $photo = null)
+    {
+        if ($request->hasFile('photo')) {
+            if ($photo) {
                 Storage::disk('public')->delete($photo);
             }
             $folder = date('Y-m-d');
@@ -74,15 +76,47 @@ class User extends Authenticatable
         return $photo;
     }
 
-    public function getImage(){
+    public function getImage()
+    {
         return $this->photo ? asset("uploads/{$this->photo}") : asset('no-image.jpeg');
     }
 
-    public function bookmarkPosts(){
+    public function bookmarkPosts()
+    {
         return $this->belongsToMany(Post::class, 'post_user_bookmarks');
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'follows_id', 'user_id')
+            ->withTimestamps();
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'user_id', 'follows_id')
+            ->withTimestamps();
+    }
+
+    public function follow($userId)
+    {
+        $this->follows()->attach($userId);
+        return $this;
+    }
+
+    public function unfollow($userId)
+    {
+        $this->follows()->detach($userId);
+        return $this;
+    }
+
+    public function isFollowing($userId)
+    {
+        return (boolean) $this->follows()->where('follows_id', $userId)->first(['user_id']);
     }
 }

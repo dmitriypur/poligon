@@ -10,6 +10,17 @@
 
     <link rel="stylesheet" href="https://unpkg.com/simpleslider-js@1.9.0/dist/simpleSlider.min.css">
     <link rel="stylesheet" href="{{ asset('front/css/front.css') }}">
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+    @if(!auth()->guest())
+        <script>
+            window.Laravel.userId = <?php echo auth()->user()->id; ?>;
+            notifications = "{{ route('notifications') }}";
+        </script>
+    @endif
 </head>
 <body>
 @include('parts.header')
@@ -18,6 +29,15 @@
         <div class="container">
             <div class="alert alert-success alert-dismissible">
                 {{ session('success') }}
+            </div>
+        </div>
+    </section>
+@endif
+@if(session()->has('error'))
+    <section class="content mt-5">
+        <div class="container">
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         </div>
     </section>
@@ -85,6 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 @yield('scripts')
 <script src="{{ asset('front/js/front.js') }}"></script>

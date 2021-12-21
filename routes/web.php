@@ -45,6 +45,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
 Route::group(['namespace' => 'Cabinet', 'prefix' => 'cabinet', 'middleware' => 'cabinet'], function(){
     Route::get('/', 'CabinetController@index')->name('cabinet');
+
+    Route::get('subscriptions', 'UserController@index')->name('subscriptions');
+    Route::post('users/{user}/follow', 'UserController@follow')->name('user.follow');
+    Route::delete('users/{user}/unfollow', 'UserController@unfollow')->name('user.unfollow');
 });
 
 Route::group(['middleware' => 'guest'], function(){
@@ -61,4 +65,7 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/reset-password', 'UserController@updatePassword')->name('password.update');
 });
 
-Route::get('/logout', 'UserController@logout')->name('logout')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/logout', 'UserController@logout')->name('logout');
+    Route::get('/notifications', 'UserController@notifications')->name('notifications');
+});
