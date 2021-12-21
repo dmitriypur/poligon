@@ -1,0 +1,241 @@
+.like-btn{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.cat-desc.mb-5 {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*============= modal ========*/
+.modal__wrap{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: all ease-in 0.2s;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 100;
+}
+.modal__wrap .modalka{
+    position: relative;
+    width: 320px;
+    height: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+
+}
+
+
+.modal__close{
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.hide{
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease-out 0.2s;
+}
+.hide .modal{
+    top: -50px;
+    opacity: 0;
+    transition: all linear 0.2s;
+}
+
+
+/*============= modal ========*/
+
+
+
+/*============= slider ========*/
+
+/**
+  * SimpleAdaptiveSlider by Itchief v2.0.0 (https://github.com/itchief/ui-components/tree/master/simple-adaptive-slider)
+  * Copyright 2020 - 2021 Alexander Maltsev
+  * Licensed under MIT (https://github.com/itchief/ui-components/blob/master/LICENSE)
+  */
+
+/* стили для корневого элемента слайдера */
+.slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* стили для wrapper */
+.slider__wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+/* стили для элемента, в котором непосредственно расположены элементы (слайды) */
+.slider__items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* класс для отключения transition */
+.transition-none {
+    transition: none;
+}
+
+/* стили для элементов */
+.slider__item {
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+/* кнопки Prev и Next */
+.slider__control {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 50px;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+    user-select: none;
+}
+
+.slider__control_show {
+    display: flex;
+}
+
+.slider__control:hover,
+.slider__control:focus {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.slider__control_prev {
+    left: 0;
+}
+
+.slider__control_next {
+    right: 0;
+}
+
+.slider__control::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: transparent no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.slider__control_prev::before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.slider__control_next::before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+/* Индикаторы */
+.slider__indicators {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0 15%;
+    list-style: none;
+    user-select: none;
+}
+
+.slider__indicator {
+    flex: 0 1 auto;
+    width: 30px;
+    height: 4px;
+    margin-right: 3px;
+    margin-left: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-clip: padding-box;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    cursor: pointer;
+}
+
+.slider__indicator_active {
+    background-color: #fff;
+}
+
+/*============= slider ========*/
+.sidebar_menu-auth{
+    margin-bottom: 30px;
+    position: relative;
+}
+.sidebar_menu-auth a{
+    padding: 5px;
+    display: block;
+    color: #777;
+    text-decoration: none;
+}
+.t_green{
+    color: #00a379 !important;
+}
+.link_auth{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.post-comments ul,
+.post-comments ol{
+    list-style: none;
+    padding: 0;
+}
+.comment-container{
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.comment-author p{
+    margin-bottom: 10px;
+}
+.commentDate{
+    font-size: 12px;
+    color: #0c84ff;
+}
+.comment-body p{
+    margin-bottom: 10px;
+}
+.comment-reply-link{
+    color: #00a379;
+}
+.commentlist .children{
+    margin-left: 2rem;
+}
