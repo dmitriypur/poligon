@@ -119,4 +119,5 @@ class User extends Authenticatable
     {
         return (boolean) $this->follows()->where('follows_id', $userId)->first(['user_id']);
     }
+
 }

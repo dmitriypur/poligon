@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
@@ -48,6 +49,8 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+        $remember = ($request['remember'] == 'on') ? true : false;
+
         $rules = [
             'email' => 'required|email',
             'password' => 'required',
@@ -58,16 +61,20 @@ class UserController extends Controller
             'password.required' => 'Обязательно для заполнения',
         ];
         $data = Validator::make($request->all(), $rules, $messages)->validate();
+
         if(Auth::attempt([
             'email' => $data['email'],
             'password' => $data['password']
-        ])){
+        ],$remember)){
             session()->flash('success', 'Вы успешно авторизовались!');
-            if(Auth::user()->is_admin){
-                return redirect()->route('admin');
-            }else{
-                return redirect()->route('home');
+            if (Auth::check() || Auth::viaRemember()){
+                if(Auth::user()->is_admin){
+                    return redirect()->route('admin');
+                }else{
+                    return redirect()->route('home');
+                }
             }
+
         }
 
         return redirect()->back()->with('error', 'Не правильный логин, или пароль');
