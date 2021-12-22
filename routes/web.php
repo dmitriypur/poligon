@@ -49,6 +49,9 @@ Route::group(['namespace' => 'Cabinet', 'prefix' => 'cabinet', 'middleware' => '
     Route::get('subscriptions', 'UserController@index')->name('subscriptions');
     Route::post('users/{user}/follow', 'UserController@follow')->name('user.follow');
     Route::delete('users/{user}/unfollow', 'UserController@unfollow')->name('user.unfollow');
+
+    Route::post('categories/{category}/subscribe', 'UserController@subscribe')->name('category.subscribe');
+    Route::delete('categories/{category}/unsubscribe', 'UserController@unsubscribe')->name('category.unsubscribe');
 });
 
 Route::group(['middleware' => 'guest'], function(){

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -120,4 +122,31 @@ class User extends Authenticatable
         return (boolean) $this->follows()->where('follows_id', $userId)->first(['user_id']);
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        // Добавляем свой класс.
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function subscriptionCategories()
+    {
+        return $this->belongsToMany(Category::class, 'subscription_category', 'user_id', 'category_id')
+            ->withTimestamps();
+    }
+
+    public function subscriptionCat($catId)
+    {
+        $this->subscriptionCategories()->attach($catId);
+        return $this;
+    }
+
+    public function unsubscribeCat($catId)
+    {
+        $this->subscriptionCategories()->detach($catId);
+        return $this;
+    }
+    public function isSubscriptionCat($catId)
+    {
+        return (boolean) $this->subscriptionCategories()->where('category_id', $catId)->first(['user_id']);
+    }
 }

@@ -15,5 +15,6 @@ class PostObserver
         foreach ($user->followers as $follower) {
             $follower->notify(new NewPost($user, $post));
         }
+
     }
 }

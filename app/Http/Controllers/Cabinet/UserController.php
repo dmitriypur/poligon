@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cabinet;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use App\Notifications\UserFollowed;
 use Illuminate\Http\Request;
@@ -11,8 +12,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', '!=', auth()->user()->id)->get();
-        return view('cabinet.subscriptions', compact('users'));
+//        $users = User::where('id', '!=', auth()->user()->id)->get();
+        $users = auth()->user()->follows;
+        $categories = auth()->user()->subscriptionCategories;
+
+        return view('cabinet.subscriptions', compact('users', 'categories'));
     }
 
     public function follow(User $user)
@@ -40,6 +44,29 @@ class UserController extends Controller
             return back()->withSuccess("Вы отписались от новостей пользователя {$user->name}");
         }
         return back()->withError("Вы не подписаны на {$user->name}");
+    }
+
+    public function subscribe(Category $category)
+    {
+        $follower = auth()->user();
+
+        if(!$follower->isSubscriptionCat($category->id)) {
+            $follower->subscriptionCat($category->id);
+
+
+            return back()->withSuccess("Вы подписались на новости канала {$category->title}");
+        }
+        return back()->withError("Вы уже подписаны на канал {$category->title}");
+    }
+
+    public function unsubscribe(Category $category)
+    {
+        $follower = auth()->user();
+        if($follower->isSubscriptionCat($category->id)) {
+            $follower->unsubscribeCat($category->id);
+            return back()->withSuccess("Вы отписались от новостей канала {$category->title}");
+        }
+        return back()->withError("Вы не подписаны на канал {$category->title}");
     }
 
 }

@@ -42,4 +42,5 @@ class Category extends Model
     public function getImage(){
         return $this->image ? asset("uploads/{$this->image}") : asset('no-image.jpeg');
     }
+
 }
