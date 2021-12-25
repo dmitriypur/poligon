@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use App\Observers\ChannelObserver;
 use App\Observers\PostObserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -48,5 +49,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Post::observe(PostObserver::class);
+        Post::observe(ChannelObserver::class);
     }
 }

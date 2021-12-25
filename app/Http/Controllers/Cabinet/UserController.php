@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cabinet;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
+use App\Notifications\ChannelPost;
 use App\Notifications\UserFollowed;
 use Illuminate\Http\Request;
 
@@ -46,13 +47,12 @@ class UserController extends Controller
         return back()->withError("Вы не подписаны на {$user->name}");
     }
 
-    public function subscribe(Category $category)
+    public function subscribe(Category $category, User $user)
     {
         $follower = auth()->user();
 
         if(!$follower->isSubscriptionCat($category->id)) {
             $follower->subscriptionCat($category->id);
-
 
             return back()->withSuccess("Вы подписались на новости канала {$category->title}");
         }

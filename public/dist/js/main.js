@@ -31,6 +31,7 @@ $(function () {
         "iDisplayLength": 10,
         "searching": true,
         "ordering": true,
+        "order": [[ 0, 'desc' ]],
         "info": true,
         "autoWidth": true,
         "responsive": true,

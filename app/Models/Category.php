@@ -43,4 +43,9 @@ class Category extends Model
         return $this->image ? asset("uploads/{$this->image}") : asset('no-image.jpeg');
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'subscription_category', 'category_id', 'user_id')
+            ->withTimestamps();
+    }
 }

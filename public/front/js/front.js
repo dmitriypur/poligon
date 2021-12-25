@@ -129,7 +129,8 @@
 var notifications = [];
 const NOTIFICATION_TYPES = {
     follow: 'App\\Notifications\\UserFollowed',
-    newPost: 'App\\Notifications\\NewPost'
+    newPost: 'App\\Notifications\\NewPost',
+    channelPost: 'App\\Notifications\\ChannelPost',
 };
 
 $(document).ready(function() {
@@ -174,6 +175,9 @@ function routeNotification(notification) {
     }else if(notification.type === NOTIFICATION_TYPES.newPost) {
         const postSlug = notification.data.post_slug;
         to = `posts/${postSlug}` + to;
+    }else if(notification.type === NOTIFICATION_TYPES.channelPost) {
+        const postSlug = notification.data.channel_post;
+        to = `posts/${postSlug}` + to;
     }
     return '/' + to;
 }
@@ -183,9 +187,12 @@ function makeNotificationText(notification) {
     if(notification.type === NOTIFICATION_TYPES.follow) {
         const name = notification.data.follower_name;
         text += `<strong>${name}</strong> Подписался на вас`;
-    } else if(notification.type === NOTIFICATION_TYPES.newPost) {
+    }else if(notification.type === NOTIFICATION_TYPES.newPost) {
         const name = notification.data.following_name;
         text += `<strong>${name}</strong> опубликовал запись`;
+    }else if(notification.type === NOTIFICATION_TYPES.channelPost) {
+        const name = notification.data.category_title;
+        text += `На канале <strong>${name}</strong> новая запись`;
     }
     return text;
 }

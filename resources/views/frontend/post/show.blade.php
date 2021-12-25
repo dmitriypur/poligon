@@ -37,6 +37,7 @@
                     @endif
                 </div>
                 <div class="w-50 d-flex justify-content-between align-items-center">
+
                     <p class="m-0">Категория: {{ $post->category->title }}</p>
                     @if(auth()->user())
                         @if(!auth()->user()->isSubscriptionCat($post->category->id))
