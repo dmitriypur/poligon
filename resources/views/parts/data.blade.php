@@ -19,21 +19,21 @@
             </div>
         </div>
 
-        @isset($reklama)
-            @if(($k + 1) % 3 == 0 && $reklama->count())
-                @if($reklama[$i]->publish)
-                    <a href="{{ $reklama[$i]['link'] }}" class="text-white">
-                        <div class="card mb-5 p-5" data-post="{{ $k }}"
-                             style="background: url('{{ $reklama[$i]->getImage() }}') no-repeat center/cover">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $reklama[$i]['title'] }}</h5>
-                            </div>
-                        </div>
-                    </a>
-                @endif
-                @if($i < $reklama->count() ? $i++ : $i = 0) @endif
-            @endif
-        @endisset
+{{--        @isset($reklama)--}}
+{{--            @if(($k + 1) % 3 == 0 && $reklama->count())--}}
+{{--                @if($reklama[$i]->publish)--}}
+{{--                    <a href="{{ $reklama[$i]['link'] }}" class="text-white">--}}
+{{--                        <div class="card mb-5 p-5" data-post="{{ $k }}"--}}
+{{--                             style="background: url('{{ $reklama[$i]->getImage() }}') no-repeat center/cover">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h5 class="card-title">{{ $reklama[$i]['title'] }}</h5>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                @endif--}}
+{{--                @if($i < $reklama->count() ? $i++ : $i = 0) @endif--}}
+{{--            @endif--}}
+{{--        @endisset--}}
     @endforeach
 @endif
 

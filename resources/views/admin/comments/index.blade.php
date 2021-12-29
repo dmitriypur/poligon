@@ -25,7 +25,6 @@
                             <td class="{{ $comment->publish ? 'text-success' : 'text-danger' }}">{{ $comment->publish ? 'Да' : 'Нет' }}</td>
                             <td>{{ $comment->post->title ?? '' }}</td>
                             <td>
-                            <td>
                                 <a href="{{ route('comment.edit', $comment) }}" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>

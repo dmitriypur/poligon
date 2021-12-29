@@ -52,6 +52,10 @@ Route::group(['namespace' => 'Cabinet', 'prefix' => 'cabinet', 'middleware' => '
 
     Route::post('categories/{category}/subscribe', 'UserController@subscribe')->name('category.subscribe');
     Route::delete('categories/{category}/unsubscribe', 'UserController@unsubscribe')->name('category.unsubscribe');
+
+    Route::resource('categories', 'CategoryController');
+    Route::resource('tags', 'TagController');
+    Route::resource('posts', 'PostController');
 });
 
 Route::group(['middleware' => 'guest'], function(){

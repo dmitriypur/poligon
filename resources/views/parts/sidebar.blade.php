@@ -2,7 +2,7 @@
     @guest()
         <a href="#" class="modal__show link_auth" data-modal="#sign-in1"></a>
     @endguest
-    <a href="{{ route('cabinet') }}" class=" t_green">
+    <a href="{{ route('cabinet') }}" class="t_green">
         Личный кабинет
     </a>
     <a href="{{ route('subscriptions') }}">
@@ -17,7 +17,7 @@
     <a href="#" class="modal__show" data-modal="#sign-in2">
         Рейтинг
     </a>
-    <a href="#" class="modal__show t_green" data-modal="#sign-in2">
+    <a href="{{ route('posts.create') }}" class="t_green">
         Написать статью
     </a>
 </div>
